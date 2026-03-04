@@ -3,7 +3,6 @@ pillow
 numpy
 scipy
 pandas
-tensorflow
 keras
 opencv-python-headless
 joblib

@@ -2,6 +2,8 @@ import os
 
 import reflex as rx
 
+from math_recognizer.utils.sklearn_compat import register_notebook_transformers
+
 MODELS_DIR = "models/output"
 
 VALID_EXTENSIONS = (".joblib", ".pickle", ".pkl", ".h5", ".keras")
@@ -13,6 +15,7 @@ def _inspect_model(path: str) -> dict:
     try:
         if path.endswith((".joblib", ".pickle", ".pkl")):
             import joblib
+            register_notebook_transformers()
             model = joblib.load(path)
         elif path.endswith((".h5", ".keras")):
             from keras.models import load_model

@@ -10,6 +10,7 @@ from math_recognizer.utils.image_processing import (
     prepare_digit_image,
     prepare_operator_image,
 )
+from math_recognizer.utils.sklearn_compat import register_notebook_transformers
 
 MODELS_DIR = "models/output"
 
@@ -27,6 +28,7 @@ DEFAULT_OPERATOR_LABELS = {
 def _load_model(path: str):
     if path.endswith((".joblib", ".pickle", ".pkl")):
         import joblib
+        register_notebook_transformers()
         return joblib.load(path)
     elif path.endswith((".h5", ".keras")):
         from keras.models import load_model
